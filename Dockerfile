@@ -1,22 +1,20 @@
-FROM python:3.9-slim 
+FROM python:3.9-slim
 
-# Install system dependencies for OpenCV/Imaging
-RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
-    libgl1-mesa-glx \
-    libglib2.0-0 && \
-    rm -rf /var/lib/apt/lists/*
-
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy requirements first to leverage Docker cache
+# Copy requirements file first to leverage Docker cache
 COPY requirements.txt .
+
+# Install Python dependencies
+# --no-cache-dir keeps the image size small
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
-COPY . /app
+# Copy the rest of the application code
+COPY . .
 
+# Expose the port Flask/Waitress will run on
 EXPOSE 5000
 
+# Command to run the application
 CMD ["python", "app.py"]
