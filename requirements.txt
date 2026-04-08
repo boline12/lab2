@@ -1,0 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cpu 
+torch [cite: 3]
+torchvision
+flask [cite: 3]
+waitress [cite: 3]
+python-dotenv
+numpy
+Pillow
+pytest
