@@ -1,4 +1,4 @@
-FROM python:3.9-slim [cite: 1]
+FROM python:3.9-slim 
 
 # Install system dependencies for OpenCV/Imaging
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
-COPY . .
+COPY . /app
 
 EXPOSE 5000
 
